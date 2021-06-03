@@ -2,6 +2,8 @@ package DDS
 
 import chisel3._
 import chisel3.util._
+import chisel3.util.random.PRNG
+
 import scala.collection.immutable.Nil
 
 class mainState extends Module {
@@ -53,6 +55,7 @@ class mainState extends Module {
       }
     }
   }
+
 
 
 

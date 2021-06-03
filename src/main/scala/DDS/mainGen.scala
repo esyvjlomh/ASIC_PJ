@@ -6,3 +6,9 @@ object mainStateGen extends App {
   Array("-X", "verilog","--target-dir", "Generated"),
   Seq(ChiselGeneratorAnnotation(() => new mainState)))
 }
+
+object randomNumGen extends App {
+  (new chisel3.stage.ChiselStage).execute(
+    Array("-X", "verilog","--target-dir", "Generated"),
+    Seq(ChiselGeneratorAnnotation(() => new randomNum)))
+}
