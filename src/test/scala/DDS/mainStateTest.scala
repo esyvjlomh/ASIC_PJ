@@ -3,16 +3,20 @@ import org.scalatest._
 import chiseltest._
 import chisel3._
 import chiseltest.ChiselScalatestTester
+import chiseltest.experimental.TestOptionBuilder._
+import chiseltest.internal.WriteVcdAnnotation
+
 class mainStateTest extends FlatSpec with ChiselScalatestTester with Matchers {
   behavior of "mainState"
   it should "change 0-3" in{
-    test(new mainState){
+    test(new mainState).withAnnotations(Seq(WriteVcdAnnotation)){
       c=>
         c.io.start.poke(1.U)
         c.io.finish.poke(1.U)
         c.clock.step(1)
         c.io.start.poke(0.U)
         c.clock.step(1)
+        c.io.start.poke(1.U)
         c.io.game_en.expect(0.U)
         //Round 1
         c.io.round.expect(1.U)
@@ -30,12 +34,17 @@ class mainStateTest extends FlatSpec with ChiselScalatestTester with Matchers {
         c.io.round.expect(3.U)
         c.clock.step(5)
         c.io.finish.poke(0.U)
-        c.io.game_end.expect(0.U)
         //Reset
         c.clock.step(1)
+        c.io.game_end.expect(0.U)
+        c.io.finish.poke(1.U)
         c.io.round.expect(0.U)
         c.io.game_en.expect(1.U)
-        c.io.game_end.expect(1.U)
+        c.io.game_end.expect(0.U)
+        c.clock.step(10)
+        c.io.round.expect(0.U)
+        c.io.game_en.expect(1.U)
+        c.io.game_end.expect(0.U)
     }
   }
 

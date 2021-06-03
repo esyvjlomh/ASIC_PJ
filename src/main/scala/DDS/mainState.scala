@@ -25,8 +25,10 @@ class mainState extends Module {
     is(zero){
       io.round := 0.U
       io.game_en := 1.U
+      io.game_end := 0.U
       when(io.start === 0.U){
         stateReg := one
+        io.game_end := 1.U
       }
     }
     is(one){
@@ -48,7 +50,6 @@ class mainState extends Module {
       io.game_en := 0.U
       when(io.finish === 0.U){
         stateReg := zero
-        io.game_end := 0.U
       }
     }
   }
