@@ -2,8 +2,6 @@ package DDS
 
 import chisel3._
 import chisel3.util._
-import chisel3.util.random.PRNG
-
 import scala.collection.immutable.Nil
 
 class mainState extends Module {
@@ -37,6 +35,7 @@ class mainState extends Module {
       io.round := 1.U
       io.game_en := 0.U
       when(io.finish === 0.U){
+        io.game_en := 1.U
         stateReg := two
       }
     }
@@ -44,6 +43,7 @@ class mainState extends Module {
       io.round := 2.U
       io.game_en := 0.U
       when(io.finish === 0.U){
+        io.game_en := 1.U
         stateReg := three
       }
     }
@@ -51,13 +51,10 @@ class mainState extends Module {
       io.round := 3.U
       io.game_en := 0.U
       when(io.finish === 0.U){
+        io.game_en := 1.U
         stateReg := zero
       }
     }
   }
-
-
-
-
 }
 

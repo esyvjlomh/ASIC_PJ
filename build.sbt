@@ -1,7 +1,7 @@
 // See README.md for license details.
 
 ThisBuild / scalaVersion     := "2.12.13"
-ThisBuild / version          := "0.1.0"
+ThisBuild / version          := "0.1.1"
 ThisBuild / organization     := "com.github.esyvjlomh"
 
 lazy val root = (project in file("."))

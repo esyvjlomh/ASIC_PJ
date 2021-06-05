@@ -7,6 +7,5 @@ class randomNum extends Module {
   val io=IO(new Bundle {
     val x = Output(UInt())
   })
-  io.x := LFSR(8,true.B,Some(100))
+  io.x := LFSR(3,true.B,Some(3))
 }
-
