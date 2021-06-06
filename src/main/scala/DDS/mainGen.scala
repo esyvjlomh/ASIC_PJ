@@ -24,3 +24,9 @@ object LEDGen extends App {
     Array("-X", "verilog","--target-dir", "Generated"),
     Seq(ChiselGeneratorAnnotation(() => new LED)))
 }
+
+object topModuleGen extends App {
+  (new chisel3.stage.ChiselStage).execute(
+    Array("-X", "verilog","--target-dir", "Generated"),
+    Seq(ChiselGeneratorAnnotation(() => new topModule)))
+}

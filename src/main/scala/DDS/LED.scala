@@ -14,6 +14,9 @@ class LED extends Module {
   val indWire = Wire(UInt(8.W))
   val tenWire = Wire(UInt(8.W))
   val hundWire = Wire(UInt(8.W))
+  io.hund := 0.U
+  io.ten := 0.U
+  io.ind := 0.U
 
   hundWire := io.score / 100.U
   tenWire := (io.score - hundWire * 100.U) / 10.U
