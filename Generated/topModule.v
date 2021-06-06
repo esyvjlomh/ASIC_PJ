@@ -92,84 +92,6 @@ end // initial
 `endif
 `endif // SYNTHESIS
 endmodule
-module MaxPeriodFibonacciLFSR(
-  input   clock,
-  input   reset,
-  output  io_out_0,
-  output  io_out_1,
-  output  io_out_2
-);
-`ifdef RANDOMIZE_REG_INIT
-  reg [31:0] _RAND_0;
-  reg [31:0] _RAND_1;
-  reg [31:0] _RAND_2;
-`endif // RANDOMIZE_REG_INIT
-  reg  state_0; // @[PRNG.scala 47:50]
-  reg  state_1; // @[PRNG.scala 47:50]
-  reg  state_2; // @[PRNG.scala 47:50]
-  wire  _T = state_2 ^ state_1; // @[LFSR.scala 15:41]
-  assign io_out_0 = state_0; // @[PRNG.scala 69:10]
-  assign io_out_1 = state_1; // @[PRNG.scala 69:10]
-  assign io_out_2 = state_2; // @[PRNG.scala 69:10]
-  always @(posedge clock) begin
-    state_0 <= reset | _T; // @[PRNG.scala 47:50 PRNG.scala 47:50]
-    state_1 <= reset | state_0; // @[PRNG.scala 47:50 PRNG.scala 47:50]
-    if (reset) begin // @[PRNG.scala 47:50]
-      state_2 <= 1'h0; // @[PRNG.scala 47:50]
-    end else begin
-      state_2 <= state_1;
-    end
-  end
-// Register and memory initialization
-`ifdef RANDOMIZE_GARBAGE_ASSIGN
-`define RANDOMIZE
-`endif
-`ifdef RANDOMIZE_INVALID_ASSIGN
-`define RANDOMIZE
-`endif
-`ifdef RANDOMIZE_REG_INIT
-`define RANDOMIZE
-`endif
-`ifdef RANDOMIZE_MEM_INIT
-`define RANDOMIZE
-`endif
-`ifndef RANDOM
-`define RANDOM $random
-`endif
-`ifdef RANDOMIZE_MEM_INIT
-  integer initvar;
-`endif
-`ifndef SYNTHESIS
-`ifdef FIRRTL_BEFORE_INITIAL
-`FIRRTL_BEFORE_INITIAL
-`endif
-initial begin
-  `ifdef RANDOMIZE
-    `ifdef INIT_RANDOM
-      `INIT_RANDOM
-    `endif
-    `ifndef VERILATOR
-      `ifdef RANDOMIZE_DELAY
-        #`RANDOMIZE_DELAY begin end
-      `else
-        #0.002 begin end
-      `endif
-    `endif
-`ifdef RANDOMIZE_REG_INIT
-  _RAND_0 = {1{`RANDOM}};
-  state_0 = _RAND_0[0:0];
-  _RAND_1 = {1{`RANDOM}};
-  state_1 = _RAND_1[0:0];
-  _RAND_2 = {1{`RANDOM}};
-  state_2 = _RAND_2[0:0];
-`endif // RANDOMIZE_REG_INIT
-  `endif // RANDOMIZE
-end // initial
-`ifdef FIRRTL_AFTER_INITIAL
-`FIRRTL_AFTER_INITIAL
-`endif
-`endif // SYNTHESIS
-endmodule
 module innerState(
   input        clock,
   input        reset,
@@ -188,32 +110,10 @@ module innerState(
   reg [31:0] _RAND_3;
   reg [31:0] _RAND_4;
 `endif // RANDOMIZE_REG_INIT
-  wire  random_prng_clock; // @[PRNG.scala 82:22]
-  wire  random_prng_reset; // @[PRNG.scala 82:22]
-  wire  random_prng_io_out_0; // @[PRNG.scala 82:22]
-  wire  random_prng_io_out_1; // @[PRNG.scala 82:22]
-  wire  random_prng_io_out_2; // @[PRNG.scala 82:22]
-  wire [2:0] random = {random_prng_io_out_2,random_prng_io_out_1,random_prng_io_out_0}; // @[PRNG.scala 86:17]
   reg [7:0] mouseReg; // @[innerState.scala 21:25]
   reg [7:0] scoreReg; // @[innerState.scala 22:25]
   reg [7:0] stepReg; // @[innerState.scala 23:20]
   reg [7:0] countReg; // @[innerState.scala 24:21]
-  wire  _T = 3'h0 == random; // @[Conditional.scala 37:30]
-  wire  _T_1 = 3'h1 == random; // @[Conditional.scala 37:30]
-  wire  _T_2 = 3'h2 == random; // @[Conditional.scala 37:30]
-  wire  _T_3 = 3'h3 == random; // @[Conditional.scala 37:30]
-  wire  _T_4 = 3'h4 == random; // @[Conditional.scala 37:30]
-  wire  _T_5 = 3'h5 == random; // @[Conditional.scala 37:30]
-  wire  _T_6 = 3'h6 == random; // @[Conditional.scala 37:30]
-  wire  _T_7 = 3'h7 == random; // @[Conditional.scala 37:30]
-  wire [7:0] _GEN_0 = _T_7 ? 8'h7f : mouseReg; // @[Conditional.scala 39:67 innerState.scala 53:22 innerState.scala 21:25]
-  wire [7:0] _GEN_1 = _T_6 ? 8'hbf : _GEN_0; // @[Conditional.scala 39:67 innerState.scala 52:22]
-  wire [7:0] _GEN_2 = _T_5 ? 8'hdf : _GEN_1; // @[Conditional.scala 39:67 innerState.scala 51:22]
-  wire [7:0] _GEN_3 = _T_4 ? 8'hef : _GEN_2; // @[Conditional.scala 39:67 innerState.scala 50:22]
-  wire [7:0] _GEN_4 = _T_3 ? 8'hf7 : _GEN_3; // @[Conditional.scala 39:67 innerState.scala 49:22]
-  wire [7:0] _GEN_5 = _T_2 ? 8'hfb : _GEN_4; // @[Conditional.scala 39:67 innerState.scala 48:22]
-  wire [7:0] _GEN_6 = _T_1 ? 8'hfd : _GEN_5; // @[Conditional.scala 39:67 innerState.scala 47:22]
-  wire [7:0] _GEN_7 = _T ? 8'hfe : _GEN_6; // @[Conditional.scala 40:58 innerState.scala 46:22]
   reg [2:0] stateReg; // @[innerState.scala 57:25]
   wire  _T_8 = 3'h0 == stateReg; // @[Conditional.scala 37:30]
   wire [7:0] _GEN_11 = ~io_game_en ? 8'h0 : 8'hff; // @[innerState.scala 72:31 innerState.scala 76:18 innerState.scala 27:12]
@@ -247,7 +147,7 @@ module innerState(
   wire [7:0] _GEN_26 = _T_20 ? _stepReg_T_1 : stepReg; // @[Conditional.scala 39:67 innerState.scala 129:15 innerState.scala 23:20]
   wire [2:0] _GEN_27 = _T_20 ? _GEN_22 : _GEN_25; // @[Conditional.scala 39:67]
   wire [7:0] _GEN_28 = _T_20 ? _GEN_23 : countReg; // @[Conditional.scala 39:67 innerState.scala 24:21]
-  wire [7:0] _GEN_30 = _T_18 ? 8'hff : _GEN_7; // @[Conditional.scala 39:67 innerState.scala 119:16]
+  wire [7:0] _GEN_30 = _T_18 ? 8'hff : 8'hfd; // @[Conditional.scala 39:67 innerState.scala 119:16]
   wire [2:0] _GEN_31 = _T_18 ? _GEN_19 : _GEN_27; // @[Conditional.scala 39:67]
   wire [7:0] _GEN_32 = _T_18 ? _GEN_21 : _GEN_28; // @[Conditional.scala 39:67]
   wire [7:0] _GEN_33 = _T_18 ? stepReg : _GEN_26; // @[Conditional.scala 39:67 innerState.scala 23:20]
@@ -257,27 +157,18 @@ module innerState(
   wire [2:0] _GEN_42 = _T_12 ? _GEN_18 : _GEN_37; // @[Conditional.scala 39:67]
   wire [7:0] _GEN_47 = _T_10 ? 8'h0 : _GEN_40; // @[Conditional.scala 39:67 innerState.scala 83:16]
   wire  _GEN_53 = _T_10 | (_T_12 | (_T_16 | (_T_18 | (_T_20 | _GEN_24)))); // @[Conditional.scala 39:67 innerState.scala 26:13]
-  MaxPeriodFibonacciLFSR random_prng ( // @[PRNG.scala 82:22]
-    .clock(random_prng_clock),
-    .reset(random_prng_reset),
-    .io_out_0(random_prng_io_out_0),
-    .io_out_1(random_prng_io_out_1),
-    .io_out_2(random_prng_io_out_2)
-  );
   assign io_finish = _T_8 | _GEN_53; // @[Conditional.scala 40:58 innerState.scala 71:17]
   assign io_mouse = _T_8 ? _GEN_11 : _GEN_47; // @[Conditional.scala 40:58]
   assign io_score = scoreReg; // @[innerState.scala 28:12]
-  assign random_prng_clock = clock;
-  assign random_prng_reset = reset;
   always @(posedge clock) begin
     if (reset) begin // @[innerState.scala 21:25]
       mouseReg <= 8'h0; // @[innerState.scala 21:25]
     end else if (_T_8) begin // @[Conditional.scala 40:58]
-      mouseReg <= _GEN_7;
+      mouseReg <= 8'hfd;
     end else if (_T_10) begin // @[Conditional.scala 39:67]
-      mouseReg <= _GEN_7;
+      mouseReg <= 8'hfd;
     end else if (_T_12) begin // @[Conditional.scala 39:67]
-      mouseReg <= _GEN_7;
+      mouseReg <= 8'hfd;
     end else begin
       mouseReg <= _GEN_36;
     end

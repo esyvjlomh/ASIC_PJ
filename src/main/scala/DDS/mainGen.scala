@@ -22,7 +22,7 @@ object innerStateGen extends App {
 object LEDGen extends App {
   (new chisel3.stage.ChiselStage).execute(
     Array("-X", "verilog","--target-dir", "Generated"),
-    Seq(ChiselGeneratorAnnotation(() => new LED)))
+    Seq(ChiselGeneratorAnnotation(() => new LED_Decimal)))
 }
 
 object topModuleGen extends App {

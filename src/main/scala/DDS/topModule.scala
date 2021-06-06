@@ -9,8 +9,6 @@ class topModule extends Module {
     val mouse = Output(UInt(8.W))
     val ind = Output(UInt(8.W))
     val ten = Output(UInt(8.W))
-    val hund = Output(UInt(8.W))
-
   })
 
   val main = Module(new mainState)
@@ -27,7 +25,5 @@ class topModule extends Module {
   inner.io.score <> LED.io.score
   io.ind <> LED.io.ind
   io.ten <> LED.io.ten
-  io.hund <> LED.io.hund
-
 }
 
