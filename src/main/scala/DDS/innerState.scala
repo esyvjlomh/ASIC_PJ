@@ -16,8 +16,8 @@ class innerState extends Module {
     val score = Output(UInt(8.W))
   })
 
-  //val random = LFSR(3,true.B,Some(3))
-  val random = "b001".U
+  val random = LFSR(3,true.B,Some(3))
+  //val random = "b001".U
   val mouseReg = RegInit(0.U(8.W))
   val scoreReg = RegInit(0.U(8.W))
   val stepReg = Reg(UInt(8.W))
