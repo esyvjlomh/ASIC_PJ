@@ -10,10 +10,19 @@ class topModule extends Module {
     val ind = Output(UInt(8.W))
     val ten = Output(UInt(8.W))
   })
+  /*
+  I/O定义解释：
+  io.start：游戏开始按键输入。
+  io.button：地鼠按键输入。
+  io.mouse：地鼠8LED输出。
+  io.ind：7段LED低位。
+  io.ten：7段LED高位。
+   */
 
   val main = Module(new mainState)
   val inner = Module(new innerState)
   val LED = Module(new LED)
+  // 子模块实例化。
 
   main.io.start <> io.start
   inner.io.button <> io.button
@@ -25,5 +34,6 @@ class topModule extends Module {
   inner.io.score <> LED.io.score
   io.ind <> LED.io.ind
   io.ten <> LED.io.ten
+  // line 18-27：端口互联。
 }
 

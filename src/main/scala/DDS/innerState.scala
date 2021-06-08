@@ -16,8 +16,8 @@ class innerState extends Module {
     val score = Output(UInt(8.W))
   })
 
-  //val random = LFSR(3,true.B,Some(3))
-  val random = "b001".U
+  val random = LFSR(3,true.B,Some(3))
+  //val random = "b001".U
   val mouseReg = RegInit(0.U(8.W))
   val scoreReg = RegInit(0.U(8.W))
   val stepReg = Reg(UInt(8.W))
@@ -27,20 +27,29 @@ class innerState extends Module {
   io.mouse := "b1111_1111".U
   io.score := scoreReg
   // I/O定义与输出初始化定义。
+  // 输出信号需要先预先定义否则编译不过，默认LED全暗，finish信号未激活。
+
   /*
-  内部定义信号解释：
-  mouseReg：地鼠亮灯信号寄存器
+  I/O与内部定义信号解释：
+  io.game_en：游戏运行使能信号，不激活游戏不运行。
+  io.game_end：游戏结束信号，激活后游戏结束且无法再运行。
+  io.round：游戏轮次信号。
+  io.button：地鼠按键输入。
+  io.finish：单轮游戏结束信号。
+  io.mouse：地鼠8LED输出。
+  io.score：得分输出。
+  mouseReg：地鼠亮灯信号寄存器。
   random：随机数发生器，使用Chisel定义的LFSR模块生成。
   scoreReg：存储得分的寄存器。
   stepReg：存储单轮剩余次数的寄存器。
-  countReg：计时器
+  countReg：计时器。
    */
 
-  val n = 1
+  //val n = 1
   //val n = 100
-  //val n = 1000
+  val n = 1000
   //val n = 10000
-  // n为计数器系数，与工作频率有关，可根据频率改变。n=1用于测试。
+  // n为计数器系数，与工作频率有关，可根据频率改变。n=1用于测试。n=1000为1kHz。
 
   switch(random){
     is(0.U){mouseReg := "b1111_1110".U}
@@ -52,9 +61,11 @@ class innerState extends Module {
     is(6.U){mouseReg := "b1011_1111".U}
     is(7.U){mouseReg := "b0111_1111".U}
   }
+  // 将random模块的随机数输出转化成随机地鼠亮灯输出。
 
   val sleep::count::ingame::hit::nhit::endstep::endround::Nil = Enum(7)
   val stateReg = RegInit(sleep)
+
   /*
   状态解释：
   sleep：待机状态
@@ -123,7 +134,7 @@ class innerState extends Module {
         countReg := countReg - 1.U
       }
     }
-    //不管是hit还是nhit都要等待计时器结束并将灯熄灭。结束后转换至endstep。
+    //不管是hit还是nhit都要等待计时器结束并在这期间将灯熄灭，结束后转换至endstep。
 
     is(endstep){
       stepReg := stepReg - 1.U

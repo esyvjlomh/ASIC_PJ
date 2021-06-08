@@ -14,6 +14,7 @@ class LED extends Module {
   val tenWire = Wire(UInt(4.W))
   io.ten := 0.U
   io.ind := 0.U
+  // I/O定义及输出初始化。ind为7段LED低位，ten为高位。
 
   tenWire := io.score(3,0)
   indWire := io.score(7,4)
