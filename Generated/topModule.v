@@ -232,7 +232,7 @@ module innerState(
   wire [7:0] _GEN_15 = io_button == mouseReg ? _scoreReg_T_1 : scoreReg; // @[innerState.scala 110:37 innerState.scala 112:20 innerState.scala 22:25]
   wire [2:0] _GEN_16 = io_button != 8'hff ? _GEN_14 : stateReg; // @[innerState.scala 109:42 innerState.scala 55:25]
   wire [7:0] _GEN_17 = io_button != 8'hff ? _GEN_15 : scoreReg; // @[innerState.scala 109:42 innerState.scala 22:25]
-  wire [2:0] _GEN_18 = _T_3 ? 3'h5 : _GEN_16; // @[innerState.scala 117:29 innerState.scala 118:18]
+  wire [2:0] _GEN_18 = _T_3 ? 3'h6 : _GEN_16; // @[innerState.scala 117:29 innerState.scala 118:18]
   wire  _T_17 = 3'h4 == stateReg; // @[Conditional.scala 37:30]
   wire [2:0] _GEN_19 = _T_3 ? 3'h6 : stateReg; // @[innerState.scala 127:29 innerState.scala 128:18 innerState.scala 55:25]
   wire [15:0] _GEN_20 = _T_3 ? countReg : _countReg_T_1; // @[innerState.scala 127:29 innerState.scala 24:21 innerState.scala 130:18]

@@ -115,12 +115,12 @@ class innerState extends Module {
         }
       }
       when(countReg === 0.U){
-        stateReg := nhit
+        stateReg := endstep
       }
     }
     // 地鼠寄存器赋随机亮灯值给输出，计时器开始计时。
     // 当有按键按下且正确则加对应分数（即round大小）并转换至hit；否则不加分并转换至nhit。
-    // 当没有按键按下且没有按键输入，亦转换至nhit。
+    // 当没有按键按下且没有按键输入，直接转换endstep。
 
     is(hit){
       mouseReg := "b1111_1111".U

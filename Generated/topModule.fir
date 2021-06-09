@@ -196,7 +196,7 @@ circuit topModule :
               skip @[innerState.scala 109:42]
             node _T_16 = eq(countReg, UInt<1>("h00")) @[innerState.scala 117:21]
             when _T_16 : @[innerState.scala 117:29]
-              stateReg <= UInt<3>("h05") @[innerState.scala 118:18]
+              stateReg <= UInt<3>("h06") @[innerState.scala 118:18]
               skip @[innerState.scala 117:29]
             skip @[Conditional.scala 39:67]
           else : @[Conditional.scala 39:67]
