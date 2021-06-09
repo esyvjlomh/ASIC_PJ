@@ -21,7 +21,7 @@ class innerState extends Module {
   val mouseReg = RegInit(0.U(8.W))
   val scoreReg = RegInit(0.U(8.W))
   val stepReg = Reg(UInt(8.W))
-  val countReg = Reg(UInt(8.W))
+  val countReg = Reg(UInt(16.W))
 
   io.finish := 1.U
   io.mouse := "b1111_1111".U
@@ -51,19 +51,7 @@ class innerState extends Module {
   //val n = 10000
   // n为计数器系数，与工作频率有关，可根据频率改变。n=1用于测试。n=1000为1kHz。
 
-  switch(random){
-    is(0.U){mouseReg := "b1111_1110".U}
-    is(1.U){mouseReg := "b1111_1101".U}
-    is(2.U){mouseReg := "b1111_1011".U}
-    is(3.U){mouseReg := "b1111_0111".U}
-    is(4.U){mouseReg := "b1110_1111".U}
-    is(5.U){mouseReg := "b1101_1111".U}
-    is(6.U){mouseReg := "b1011_1111".U}
-    is(7.U){mouseReg := "b0111_1111".U}
-  }
-  // 将random模块的随机数输出转化成随机地鼠亮灯输出。
-
-  val sleep::count::ingame::hit::nhit::endstep::endround::Nil = Enum(7)
+  val sleep::count::mouseFetch::ingame::hit::nhit::endstep::endround::Nil = Enum(8)
   val stateReg = RegInit(sleep)
 
   /*
@@ -94,12 +82,27 @@ class innerState extends Module {
       io.mouse := 0.U
       countReg := countReg - 1.U
       when(countReg === 0.U) {
-        stateReg := ingame
-        countReg := (10.U-2.U*io.round-1.U)*n.U
+        stateReg := mouseFetch
+        countReg := (10.U-2.U*io.round)*n.U
       }
     }
     // 游戏开始前的倒计时，倒计时结束后状态转换，计时器赋地鼠亮灯间隔时间长短。
 
+    is(mouseFetch){
+      switch(random){
+        is(0.U){mouseReg := "b1111_1110".U}
+        is(1.U){mouseReg := "b1111_1101".U}
+        is(2.U){mouseReg := "b1111_1011".U}
+        is(3.U){mouseReg := "b1111_0111".U}
+        is(4.U){mouseReg := "b1110_1111".U}
+        is(5.U){mouseReg := "b1101_1111".U}
+        is(6.U){mouseReg := "b1011_1111".U}
+        is(7.U){mouseReg := "b0111_1111".U}
+      }
+      // 将random模块的随机数输出转化成随机地鼠亮灯输出。
+
+      stateReg := ingame
+    }
     is(ingame){
       io.mouse := mouseReg
       countReg := countReg - 1.U
@@ -120,10 +123,11 @@ class innerState extends Module {
     // 当没有按键按下且没有按键输入，亦转换至nhit。
 
     is(hit){
-      countReg := countReg - 1.U
       mouseReg := "b1111_1111".U
       when(countReg === 0.U){
         stateReg := endstep
+      }.otherwise {
+        countReg := countReg - 1.U
       }
     }
     is(nhit) {
@@ -141,8 +145,8 @@ class innerState extends Module {
       when(stepReg === 0.U){
         stateReg := endround
       }.otherwise{
-        stateReg := ingame
-        countReg := (10.U-2.U*io.round-1.U)*n.U
+        stateReg := mouseFetch
+        countReg := (10.U-2.U*io.round)*n.U
       }
     }
     //如果次数寄存器清零则转换至endround，否则回到ingame并重新给计时器赋时间值。

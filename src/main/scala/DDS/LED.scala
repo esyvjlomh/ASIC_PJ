@@ -16,12 +16,12 @@ class LED extends Module {
   io.ind := 0.U
   // I/O定义及输出初始化。ind为7段LED低位，ten为高位。
 
-  tenWire := io.score(3,0)
-  indWire := io.score(7,4)
+  indWire := io.score(3,0)
+  tenWire := io.score(7,4)
 
   switch(tenWire){
     is(0.U){io.ten := "b0000_0011".U}
-    is(1.U){io.ten := "b0110_0000".U}
+    is(1.U){io.ten := "b1001_1111".U}
     is(2.U){io.ten := "b0010_0101".U}
     is(3.U){io.ten := "b0000_1101".U}
     is(4.U){io.ten := "b1001_1001".U}
@@ -40,7 +40,7 @@ class LED extends Module {
 
   switch(indWire){
     is(0.U){io.ind := "b0000_0011".U}
-    is(1.U){io.ind := "b0110_0000".U}
+    is(1.U){io.ind := "b1001_1111".U}
     is(2.U){io.ind := "b0010_0101".U}
     is(3.U){io.ind := "b0000_1101".U}
     is(4.U){io.ind := "b1001_1001".U}
