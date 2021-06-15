@@ -20,7 +20,7 @@ class LED extends Module {
   tenWire := io.score(7,4)
 
   switch(tenWire){
-    is(0.U){io.ten := "b1111_1100".U}
+    is(0.U){io.ten := "b0000_0011".U}
     is(1.U){io.ten := "b1001_1111".U}
     is(2.U){io.ten := "b0010_0101".U}
     is(3.U){io.ten := "b0000_1101".U}
@@ -39,7 +39,7 @@ class LED extends Module {
   }
 
   switch(indWire){
-    is(0.U){io.ind := "b1111_1100".U}
+    is(0.U){io.ind := "b0000_0011".U}
     is(1.U){io.ind := "b1001_1111".U}
     is(2.U){io.ind := "b0010_0101".U}
     is(3.U){io.ind := "b0000_1101".U}

@@ -425,7 +425,7 @@ module LED_Decimal(
   wire [7:0] _GEN_5 = _T_4 ? 8'h99 : {{1'd0}, _GEN_4}; // @[Conditional.scala 39:67 LED_Decimal.scala 30:21]
   wire [7:0] _GEN_6 = _T_3 ? 8'hd : _GEN_5; // @[Conditional.scala 39:67 LED_Decimal.scala 29:21]
   wire [7:0] _GEN_7 = _T_2 ? 8'h25 : _GEN_6; // @[Conditional.scala 39:67 LED_Decimal.scala 28:21]
-  wire [7:0] _GEN_8 = _T_1 ? 8'h60 : _GEN_7; // @[Conditional.scala 39:67 LED_Decimal.scala 27:21]
+  wire [7:0] _GEN_8 = _T_1 ? 8'h9f : _GEN_7; // @[Conditional.scala 39:67 LED_Decimal.scala 27:21]
   wire  _T_10 = 8'h0 == tenWire; // @[Conditional.scala 37:30]
   wire  _T_11 = 8'h1 == tenWire; // @[Conditional.scala 37:30]
   wire  _T_12 = 8'h2 == tenWire; // @[Conditional.scala 37:30]
@@ -444,7 +444,7 @@ module LED_Decimal(
   wire [7:0] _GEN_15 = _T_14 ? 8'h99 : {{1'd0}, _GEN_14}; // @[Conditional.scala 39:67 LED_Decimal.scala 43:20]
   wire [7:0] _GEN_16 = _T_13 ? 8'hd : _GEN_15; // @[Conditional.scala 39:67 LED_Decimal.scala 42:20]
   wire [7:0] _GEN_17 = _T_12 ? 8'h25 : _GEN_16; // @[Conditional.scala 39:67 LED_Decimal.scala 41:20]
-  wire [7:0] _GEN_18 = _T_11 ? 8'h60 : _GEN_17; // @[Conditional.scala 39:67 LED_Decimal.scala 40:20]
+  wire [7:0] _GEN_18 = _T_11 ? 8'h9f : _GEN_17; // @[Conditional.scala 39:67 LED_Decimal.scala 40:20]
   wire [7:0] indWire = _indWire_T_5[7:0]; // @[LED_Decimal.scala 14:21 LED_Decimal.scala 23:11]
   wire  _T_20 = 8'h0 == indWire; // @[Conditional.scala 37:30]
   wire  _T_21 = 8'h1 == indWire; // @[Conditional.scala 37:30]
@@ -464,10 +464,10 @@ module LED_Decimal(
   wire [7:0] _GEN_25 = _T_24 ? 8'h99 : {{1'd0}, _GEN_24}; // @[Conditional.scala 39:67 LED_Decimal.scala 56:20]
   wire [7:0] _GEN_26 = _T_23 ? 8'hd : _GEN_25; // @[Conditional.scala 39:67 LED_Decimal.scala 55:20]
   wire [7:0] _GEN_27 = _T_22 ? 8'h25 : _GEN_26; // @[Conditional.scala 39:67 LED_Decimal.scala 54:20]
-  wire [7:0] _GEN_28 = _T_21 ? 8'h60 : _GEN_27; // @[Conditional.scala 39:67 LED_Decimal.scala 53:20]
-  assign io_ind = _T_20 ? 8'hfc : _GEN_28; // @[Conditional.scala 40:58 LED_Decimal.scala 52:20]
-  assign io_ten = _T_10 ? 8'hfc : _GEN_18; // @[Conditional.scala 40:58 LED_Decimal.scala 39:20]
-  assign io_hund = _T ? 8'hfc : _GEN_8; // @[Conditional.scala 40:58 LED_Decimal.scala 26:21]
+  wire [7:0] _GEN_28 = _T_21 ? 8'h9f : _GEN_27; // @[Conditional.scala 39:67 LED_Decimal.scala 53:20]
+  assign io_ind = _T_20 ? 8'h3 : _GEN_28; // @[Conditional.scala 40:58 LED_Decimal.scala 52:20]
+  assign io_ten = _T_10 ? 8'h3 : _GEN_18; // @[Conditional.scala 40:58 LED_Decimal.scala 39:20]
+  assign io_hund = _T ? 8'h3 : _GEN_8; // @[Conditional.scala 40:58 LED_Decimal.scala 26:21]
 endmodule
 module topModuleD(
   input        clock,

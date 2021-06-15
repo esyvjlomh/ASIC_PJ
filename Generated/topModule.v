@@ -461,8 +461,8 @@ module LED(
   wire [7:0] _GEN_28 = _T_19 ? 8'hd : _GEN_27; // @[Conditional.scala 39:67 LED.scala 45:20]
   wire [7:0] _GEN_29 = _T_18 ? 8'h25 : _GEN_28; // @[Conditional.scala 39:67 LED.scala 44:20]
   wire [7:0] _GEN_30 = _T_17 ? 8'h9f : _GEN_29; // @[Conditional.scala 39:67 LED.scala 43:20]
-  assign io_ind = _T_16 ? 8'hfc : _GEN_30; // @[Conditional.scala 40:58 LED.scala 42:20]
-  assign io_ten = _T ? 8'hfc : _GEN_14; // @[Conditional.scala 40:58 LED.scala 23:20]
+  assign io_ind = _T_16 ? 8'h3 : _GEN_30; // @[Conditional.scala 40:58 LED.scala 42:20]
+  assign io_ten = _T ? 8'h3 : _GEN_14; // @[Conditional.scala 40:58 LED.scala 23:20]
 endmodule
 module topModule(
   input        clock,
