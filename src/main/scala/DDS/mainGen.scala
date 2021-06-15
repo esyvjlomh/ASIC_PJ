@@ -30,3 +30,9 @@ object topModuleGen extends App {
     Array("-X", "verilog","--target-dir", "Generated"),
     Seq(ChiselGeneratorAnnotation(() => new topModule)))
 }
+
+object topModuleDGen extends App {
+  (new chisel3.stage.ChiselStage).execute(
+    Array("-X", "verilog","--target-dir", "Generated"),
+    Seq(ChiselGeneratorAnnotation(() => new topModuleD)))
+}

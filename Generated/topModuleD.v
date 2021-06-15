@@ -392,107 +392,114 @@ end // initial
 `endif
 `endif // SYNTHESIS
 endmodule
-module LED(
+module LED_Decimal(
   input  [7:0] io_score,
   output [7:0] io_ind,
-  output [7:0] io_ten
+  output [7:0] io_ten,
+  output [7:0] io_hund
 );
-  wire [3:0] indWire = io_score[3:0]; // @[LED.scala 19:22]
-  wire [3:0] tenWire = io_score[7:4]; // @[LED.scala 20:22]
-  wire  _T = 4'h0 == tenWire; // @[Conditional.scala 37:30]
-  wire  _T_1 = 4'h1 == tenWire; // @[Conditional.scala 37:30]
-  wire  _T_2 = 4'h2 == tenWire; // @[Conditional.scala 37:30]
-  wire  _T_3 = 4'h3 == tenWire; // @[Conditional.scala 37:30]
-  wire  _T_4 = 4'h4 == tenWire; // @[Conditional.scala 37:30]
-  wire  _T_5 = 4'h5 == tenWire; // @[Conditional.scala 37:30]
-  wire  _T_6 = 4'h6 == tenWire; // @[Conditional.scala 37:30]
-  wire  _T_7 = 4'h7 == tenWire; // @[Conditional.scala 37:30]
-  wire  _T_8 = 4'h8 == tenWire; // @[Conditional.scala 37:30]
-  wire  _T_9 = 4'h9 == tenWire; // @[Conditional.scala 37:30]
-  wire  _T_10 = 4'ha == tenWire; // @[Conditional.scala 37:30]
-  wire  _T_11 = 4'hb == tenWire; // @[Conditional.scala 37:30]
-  wire  _T_12 = 4'hc == tenWire; // @[Conditional.scala 37:30]
-  wire  _T_13 = 4'hd == tenWire; // @[Conditional.scala 37:30]
-  wire  _T_14 = 4'he == tenWire; // @[Conditional.scala 37:30]
-  wire  _T_15 = 4'hf == tenWire; // @[Conditional.scala 37:30]
-  wire [6:0] _GEN_0 = _T_15 ? 7'h71 : 7'h0; // @[Conditional.scala 39:67 LED.scala 38:21 LED.scala 15:10]
-  wire [6:0] _GEN_1 = _T_14 ? 7'h61 : _GEN_0; // @[Conditional.scala 39:67 LED.scala 37:21]
-  wire [7:0] _GEN_2 = _T_13 ? 8'h85 : {{1'd0}, _GEN_1}; // @[Conditional.scala 39:67 LED.scala 36:21]
-  wire [7:0] _GEN_3 = _T_12 ? 8'h63 : _GEN_2; // @[Conditional.scala 39:67 LED.scala 35:21]
-  wire [7:0] _GEN_4 = _T_11 ? 8'hc1 : _GEN_3; // @[Conditional.scala 39:67 LED.scala 34:21]
-  wire [7:0] _GEN_5 = _T_10 ? 8'h11 : _GEN_4; // @[Conditional.scala 39:67 LED.scala 33:21]
-  wire [7:0] _GEN_6 = _T_9 ? 8'h9 : _GEN_5; // @[Conditional.scala 39:67 LED.scala 32:20]
-  wire [7:0] _GEN_7 = _T_8 ? 8'h1 : _GEN_6; // @[Conditional.scala 39:67 LED.scala 31:20]
-  wire [7:0] _GEN_8 = _T_7 ? 8'h1f : _GEN_7; // @[Conditional.scala 39:67 LED.scala 30:20]
-  wire [7:0] _GEN_9 = _T_6 ? 8'h41 : _GEN_8; // @[Conditional.scala 39:67 LED.scala 29:20]
-  wire [7:0] _GEN_10 = _T_5 ? 8'h49 : _GEN_9; // @[Conditional.scala 39:67 LED.scala 28:20]
-  wire [7:0] _GEN_11 = _T_4 ? 8'h99 : _GEN_10; // @[Conditional.scala 39:67 LED.scala 27:20]
-  wire [7:0] _GEN_12 = _T_3 ? 8'hd : _GEN_11; // @[Conditional.scala 39:67 LED.scala 26:20]
-  wire [7:0] _GEN_13 = _T_2 ? 8'h25 : _GEN_12; // @[Conditional.scala 39:67 LED.scala 25:20]
-  wire [7:0] _GEN_14 = _T_1 ? 8'h9f : _GEN_13; // @[Conditional.scala 39:67 LED.scala 24:20]
-  wire  _T_16 = 4'h0 == indWire; // @[Conditional.scala 37:30]
-  wire  _T_17 = 4'h1 == indWire; // @[Conditional.scala 37:30]
-  wire  _T_18 = 4'h2 == indWire; // @[Conditional.scala 37:30]
-  wire  _T_19 = 4'h3 == indWire; // @[Conditional.scala 37:30]
-  wire  _T_20 = 4'h4 == indWire; // @[Conditional.scala 37:30]
-  wire  _T_21 = 4'h5 == indWire; // @[Conditional.scala 37:30]
-  wire  _T_22 = 4'h6 == indWire; // @[Conditional.scala 37:30]
-  wire  _T_23 = 4'h7 == indWire; // @[Conditional.scala 37:30]
-  wire  _T_24 = 4'h8 == indWire; // @[Conditional.scala 37:30]
-  wire  _T_25 = 4'h9 == indWire; // @[Conditional.scala 37:30]
-  wire  _T_26 = 4'ha == indWire; // @[Conditional.scala 37:30]
-  wire  _T_27 = 4'hb == indWire; // @[Conditional.scala 37:30]
-  wire  _T_28 = 4'hc == indWire; // @[Conditional.scala 37:30]
-  wire  _T_29 = 4'hd == indWire; // @[Conditional.scala 37:30]
-  wire  _T_30 = 4'he == indWire; // @[Conditional.scala 37:30]
-  wire  _T_31 = 4'hf == indWire; // @[Conditional.scala 37:30]
-  wire [6:0] _GEN_16 = _T_31 ? 7'h71 : 7'h0; // @[Conditional.scala 39:67 LED.scala 57:21 LED.scala 16:10]
-  wire [6:0] _GEN_17 = _T_30 ? 7'h61 : _GEN_16; // @[Conditional.scala 39:67 LED.scala 56:21]
-  wire [7:0] _GEN_18 = _T_29 ? 8'h85 : {{1'd0}, _GEN_17}; // @[Conditional.scala 39:67 LED.scala 55:21]
-  wire [7:0] _GEN_19 = _T_28 ? 8'h63 : _GEN_18; // @[Conditional.scala 39:67 LED.scala 54:21]
-  wire [7:0] _GEN_20 = _T_27 ? 8'hc1 : _GEN_19; // @[Conditional.scala 39:67 LED.scala 53:21]
-  wire [7:0] _GEN_21 = _T_26 ? 8'h11 : _GEN_20; // @[Conditional.scala 39:67 LED.scala 52:21]
-  wire [7:0] _GEN_22 = _T_25 ? 8'h9 : _GEN_21; // @[Conditional.scala 39:67 LED.scala 51:20]
-  wire [7:0] _GEN_23 = _T_24 ? 8'h1 : _GEN_22; // @[Conditional.scala 39:67 LED.scala 50:20]
-  wire [7:0] _GEN_24 = _T_23 ? 8'h1f : _GEN_23; // @[Conditional.scala 39:67 LED.scala 49:20]
-  wire [7:0] _GEN_25 = _T_22 ? 8'h41 : _GEN_24; // @[Conditional.scala 39:67 LED.scala 48:20]
-  wire [7:0] _GEN_26 = _T_21 ? 8'h49 : _GEN_25; // @[Conditional.scala 39:67 LED.scala 47:20]
-  wire [7:0] _GEN_27 = _T_20 ? 8'h99 : _GEN_26; // @[Conditional.scala 39:67 LED.scala 46:20]
-  wire [7:0] _GEN_28 = _T_19 ? 8'hd : _GEN_27; // @[Conditional.scala 39:67 LED.scala 45:20]
-  wire [7:0] _GEN_29 = _T_18 ? 8'h25 : _GEN_28; // @[Conditional.scala 39:67 LED.scala 44:20]
-  wire [7:0] _GEN_30 = _T_17 ? 8'h9f : _GEN_29; // @[Conditional.scala 39:67 LED.scala 43:20]
-  assign io_ind = _T_16 ? 8'hfc : _GEN_30; // @[Conditional.scala 40:58 LED.scala 42:20]
-  assign io_ten = _T ? 8'hfc : _GEN_14; // @[Conditional.scala 40:58 LED.scala 23:20]
+  wire [7:0] hundWire = io_score / 7'h64; // @[LED_Decimal.scala 21:24]
+  wire [14:0] _tenWire_T = hundWire * 7'h64; // @[LED_Decimal.scala 22:35]
+  wire [14:0] _GEN_30 = {{7'd0}, io_score}; // @[LED_Decimal.scala 22:24]
+  wire [14:0] _tenWire_T_2 = _GEN_30 - _tenWire_T; // @[LED_Decimal.scala 22:24]
+  wire [14:0] _tenWire_T_3 = _tenWire_T_2 / 4'ha; // @[LED_Decimal.scala 22:44]
+  wire [7:0] tenWire = _tenWire_T_3[7:0]; // @[LED_Decimal.scala 15:21 LED_Decimal.scala 22:11]
+  wire [11:0] _indWire_T_3 = tenWire * 4'ha; // @[LED_Decimal.scala 23:51]
+  wire [14:0] _GEN_32 = {{3'd0}, _indWire_T_3}; // @[LED_Decimal.scala 23:41]
+  wire [14:0] _indWire_T_5 = _tenWire_T_2 - _GEN_32; // @[LED_Decimal.scala 23:41]
+  wire  _T = 8'h0 == hundWire; // @[Conditional.scala 37:30]
+  wire  _T_1 = 8'h1 == hundWire; // @[Conditional.scala 37:30]
+  wire  _T_2 = 8'h2 == hundWire; // @[Conditional.scala 37:30]
+  wire  _T_3 = 8'h3 == hundWire; // @[Conditional.scala 37:30]
+  wire  _T_4 = 8'h4 == hundWire; // @[Conditional.scala 37:30]
+  wire  _T_5 = 8'h5 == hundWire; // @[Conditional.scala 37:30]
+  wire  _T_6 = 8'h6 == hundWire; // @[Conditional.scala 37:30]
+  wire  _T_7 = 8'h7 == hundWire; // @[Conditional.scala 37:30]
+  wire  _T_8 = 8'h8 == hundWire; // @[Conditional.scala 37:30]
+  wire  _T_9 = 8'h9 == hundWire; // @[Conditional.scala 37:30]
+  wire [3:0] _GEN_0 = _T_9 ? 4'h9 : 4'h0; // @[Conditional.scala 39:67 LED_Decimal.scala 35:21 LED_Decimal.scala 17:11]
+  wire [3:0] _GEN_1 = _T_8 ? 4'h1 : _GEN_0; // @[Conditional.scala 39:67 LED_Decimal.scala 34:21]
+  wire [4:0] _GEN_2 = _T_7 ? 5'h1f : {{1'd0}, _GEN_1}; // @[Conditional.scala 39:67 LED_Decimal.scala 33:21]
+  wire [6:0] _GEN_3 = _T_6 ? 7'h41 : {{2'd0}, _GEN_2}; // @[Conditional.scala 39:67 LED_Decimal.scala 32:21]
+  wire [6:0] _GEN_4 = _T_5 ? 7'h49 : _GEN_3; // @[Conditional.scala 39:67 LED_Decimal.scala 31:21]
+  wire [7:0] _GEN_5 = _T_4 ? 8'h99 : {{1'd0}, _GEN_4}; // @[Conditional.scala 39:67 LED_Decimal.scala 30:21]
+  wire [7:0] _GEN_6 = _T_3 ? 8'hd : _GEN_5; // @[Conditional.scala 39:67 LED_Decimal.scala 29:21]
+  wire [7:0] _GEN_7 = _T_2 ? 8'h25 : _GEN_6; // @[Conditional.scala 39:67 LED_Decimal.scala 28:21]
+  wire [7:0] _GEN_8 = _T_1 ? 8'h60 : _GEN_7; // @[Conditional.scala 39:67 LED_Decimal.scala 27:21]
+  wire  _T_10 = 8'h0 == tenWire; // @[Conditional.scala 37:30]
+  wire  _T_11 = 8'h1 == tenWire; // @[Conditional.scala 37:30]
+  wire  _T_12 = 8'h2 == tenWire; // @[Conditional.scala 37:30]
+  wire  _T_13 = 8'h3 == tenWire; // @[Conditional.scala 37:30]
+  wire  _T_14 = 8'h4 == tenWire; // @[Conditional.scala 37:30]
+  wire  _T_15 = 8'h5 == tenWire; // @[Conditional.scala 37:30]
+  wire  _T_16 = 8'h6 == tenWire; // @[Conditional.scala 37:30]
+  wire  _T_17 = 8'h7 == tenWire; // @[Conditional.scala 37:30]
+  wire  _T_18 = 8'h8 == tenWire; // @[Conditional.scala 37:30]
+  wire  _T_19 = 8'h9 == tenWire; // @[Conditional.scala 37:30]
+  wire [3:0] _GEN_10 = _T_19 ? 4'h9 : 4'h0; // @[Conditional.scala 39:67 LED_Decimal.scala 48:20 LED_Decimal.scala 18:10]
+  wire [3:0] _GEN_11 = _T_18 ? 4'h1 : _GEN_10; // @[Conditional.scala 39:67 LED_Decimal.scala 47:20]
+  wire [4:0] _GEN_12 = _T_17 ? 5'h1f : {{1'd0}, _GEN_11}; // @[Conditional.scala 39:67 LED_Decimal.scala 46:20]
+  wire [6:0] _GEN_13 = _T_16 ? 7'h41 : {{2'd0}, _GEN_12}; // @[Conditional.scala 39:67 LED_Decimal.scala 45:20]
+  wire [6:0] _GEN_14 = _T_15 ? 7'h49 : _GEN_13; // @[Conditional.scala 39:67 LED_Decimal.scala 44:20]
+  wire [7:0] _GEN_15 = _T_14 ? 8'h99 : {{1'd0}, _GEN_14}; // @[Conditional.scala 39:67 LED_Decimal.scala 43:20]
+  wire [7:0] _GEN_16 = _T_13 ? 8'hd : _GEN_15; // @[Conditional.scala 39:67 LED_Decimal.scala 42:20]
+  wire [7:0] _GEN_17 = _T_12 ? 8'h25 : _GEN_16; // @[Conditional.scala 39:67 LED_Decimal.scala 41:20]
+  wire [7:0] _GEN_18 = _T_11 ? 8'h60 : _GEN_17; // @[Conditional.scala 39:67 LED_Decimal.scala 40:20]
+  wire [7:0] indWire = _indWire_T_5[7:0]; // @[LED_Decimal.scala 14:21 LED_Decimal.scala 23:11]
+  wire  _T_20 = 8'h0 == indWire; // @[Conditional.scala 37:30]
+  wire  _T_21 = 8'h1 == indWire; // @[Conditional.scala 37:30]
+  wire  _T_22 = 8'h2 == indWire; // @[Conditional.scala 37:30]
+  wire  _T_23 = 8'h3 == indWire; // @[Conditional.scala 37:30]
+  wire  _T_24 = 8'h4 == indWire; // @[Conditional.scala 37:30]
+  wire  _T_25 = 8'h5 == indWire; // @[Conditional.scala 37:30]
+  wire  _T_26 = 8'h6 == indWire; // @[Conditional.scala 37:30]
+  wire  _T_27 = 8'h7 == indWire; // @[Conditional.scala 37:30]
+  wire  _T_28 = 8'h8 == indWire; // @[Conditional.scala 37:30]
+  wire  _T_29 = 8'h9 == indWire; // @[Conditional.scala 37:30]
+  wire [3:0] _GEN_20 = _T_29 ? 4'h9 : 4'h0; // @[Conditional.scala 39:67 LED_Decimal.scala 61:20 LED_Decimal.scala 19:10]
+  wire [3:0] _GEN_21 = _T_28 ? 4'h1 : _GEN_20; // @[Conditional.scala 39:67 LED_Decimal.scala 60:20]
+  wire [4:0] _GEN_22 = _T_27 ? 5'h1f : {{1'd0}, _GEN_21}; // @[Conditional.scala 39:67 LED_Decimal.scala 59:20]
+  wire [6:0] _GEN_23 = _T_26 ? 7'h41 : {{2'd0}, _GEN_22}; // @[Conditional.scala 39:67 LED_Decimal.scala 58:20]
+  wire [6:0] _GEN_24 = _T_25 ? 7'h49 : _GEN_23; // @[Conditional.scala 39:67 LED_Decimal.scala 57:20]
+  wire [7:0] _GEN_25 = _T_24 ? 8'h99 : {{1'd0}, _GEN_24}; // @[Conditional.scala 39:67 LED_Decimal.scala 56:20]
+  wire [7:0] _GEN_26 = _T_23 ? 8'hd : _GEN_25; // @[Conditional.scala 39:67 LED_Decimal.scala 55:20]
+  wire [7:0] _GEN_27 = _T_22 ? 8'h25 : _GEN_26; // @[Conditional.scala 39:67 LED_Decimal.scala 54:20]
+  wire [7:0] _GEN_28 = _T_21 ? 8'h60 : _GEN_27; // @[Conditional.scala 39:67 LED_Decimal.scala 53:20]
+  assign io_ind = _T_20 ? 8'hfc : _GEN_28; // @[Conditional.scala 40:58 LED_Decimal.scala 52:20]
+  assign io_ten = _T_10 ? 8'hfc : _GEN_18; // @[Conditional.scala 40:58 LED_Decimal.scala 39:20]
+  assign io_hund = _T ? 8'hfc : _GEN_8; // @[Conditional.scala 40:58 LED_Decimal.scala 26:21]
 endmodule
-module topModule(
+module topModuleD(
   input        clock,
   input        reset,
   input        io_start,
   input  [7:0] io_button,
   output [7:0] io_mouse,
   output [7:0] io_ind,
-  output [7:0] io_ten
+  output [7:0] io_ten,
+  output [7:0] io_hund
 );
-  wire  main_clock; // @[topModule.scala 22:20]
-  wire  main_reset; // @[topModule.scala 22:20]
-  wire  main_io_start; // @[topModule.scala 22:20]
-  wire  main_io_finish; // @[topModule.scala 22:20]
-  wire  main_io_game_en; // @[topModule.scala 22:20]
-  wire  main_io_game_end; // @[topModule.scala 22:20]
-  wire [1:0] main_io_round; // @[topModule.scala 22:20]
-  wire  inner_clock; // @[topModule.scala 23:21]
-  wire  inner_reset; // @[topModule.scala 23:21]
-  wire  inner_io_game_en; // @[topModule.scala 23:21]
-  wire  inner_io_game_end; // @[topModule.scala 23:21]
-  wire [1:0] inner_io_round; // @[topModule.scala 23:21]
-  wire [7:0] inner_io_button; // @[topModule.scala 23:21]
-  wire  inner_io_finish; // @[topModule.scala 23:21]
-  wire [7:0] inner_io_mouse; // @[topModule.scala 23:21]
-  wire [7:0] inner_io_score; // @[topModule.scala 23:21]
-  wire [7:0] LED_io_score; // @[topModule.scala 24:19]
-  wire [7:0] LED_io_ind; // @[topModule.scala 24:19]
-  wire [7:0] LED_io_ten; // @[topModule.scala 24:19]
-  mainState main ( // @[topModule.scala 22:20]
+  wire  main_clock; // @[topModuleD.scala 24:20]
+  wire  main_reset; // @[topModuleD.scala 24:20]
+  wire  main_io_start; // @[topModuleD.scala 24:20]
+  wire  main_io_finish; // @[topModuleD.scala 24:20]
+  wire  main_io_game_en; // @[topModuleD.scala 24:20]
+  wire  main_io_game_end; // @[topModuleD.scala 24:20]
+  wire [1:0] main_io_round; // @[topModuleD.scala 24:20]
+  wire  inner_clock; // @[topModuleD.scala 25:21]
+  wire  inner_reset; // @[topModuleD.scala 25:21]
+  wire  inner_io_game_en; // @[topModuleD.scala 25:21]
+  wire  inner_io_game_end; // @[topModuleD.scala 25:21]
+  wire [1:0] inner_io_round; // @[topModuleD.scala 25:21]
+  wire [7:0] inner_io_button; // @[topModuleD.scala 25:21]
+  wire  inner_io_finish; // @[topModuleD.scala 25:21]
+  wire [7:0] inner_io_mouse; // @[topModuleD.scala 25:21]
+  wire [7:0] inner_io_score; // @[topModuleD.scala 25:21]
+  wire [7:0] LED_D_io_score; // @[topModuleD.scala 26:21]
+  wire [7:0] LED_D_io_ind; // @[topModuleD.scala 26:21]
+  wire [7:0] LED_D_io_ten; // @[topModuleD.scala 26:21]
+  wire [7:0] LED_D_io_hund; // @[topModuleD.scala 26:21]
+  mainState main ( // @[topModuleD.scala 24:20]
     .clock(main_clock),
     .reset(main_reset),
     .io_start(main_io_start),
@@ -501,7 +508,7 @@ module topModule(
     .io_game_end(main_io_game_end),
     .io_round(main_io_round)
   );
-  innerState inner ( // @[topModule.scala 23:21]
+  innerState inner ( // @[topModuleD.scala 25:21]
     .clock(inner_clock),
     .reset(inner_reset),
     .io_game_en(inner_io_game_en),
@@ -512,23 +519,25 @@ module topModule(
     .io_mouse(inner_io_mouse),
     .io_score(inner_io_score)
   );
-  LED LED ( // @[topModule.scala 24:19]
-    .io_score(LED_io_score),
-    .io_ind(LED_io_ind),
-    .io_ten(LED_io_ten)
+  LED_Decimal LED_D ( // @[topModuleD.scala 26:21]
+    .io_score(LED_D_io_score),
+    .io_ind(LED_D_io_ind),
+    .io_ten(LED_D_io_ten),
+    .io_hund(LED_D_io_hund)
   );
-  assign io_mouse = inner_io_mouse; // @[topModule.scala 33:12]
-  assign io_ind = LED_io_ind; // @[topModule.scala 35:10]
-  assign io_ten = LED_io_ten; // @[topModule.scala 36:10]
+  assign io_mouse = inner_io_mouse; // @[topModuleD.scala 35:12]
+  assign io_ind = LED_D_io_ind; // @[topModuleD.scala 37:10]
+  assign io_ten = LED_D_io_ten; // @[topModuleD.scala 38:10]
+  assign io_hund = LED_D_io_hund; // @[topModuleD.scala 39:11]
   assign main_clock = clock;
   assign main_reset = reset;
-  assign main_io_start = io_start; // @[topModule.scala 27:17]
-  assign main_io_finish = inner_io_finish; // @[topModule.scala 29:18]
+  assign main_io_start = io_start; // @[topModuleD.scala 29:17]
+  assign main_io_finish = inner_io_finish; // @[topModuleD.scala 31:18]
   assign inner_clock = clock;
   assign inner_reset = reset;
-  assign inner_io_game_en = main_io_game_en; // @[topModule.scala 30:19]
-  assign inner_io_game_end = main_io_game_end; // @[topModule.scala 31:20]
-  assign inner_io_round = main_io_round; // @[topModule.scala 32:17]
-  assign inner_io_button = io_button; // @[topModule.scala 28:19]
-  assign LED_io_score = inner_io_score; // @[topModule.scala 34:18]
+  assign inner_io_game_en = main_io_game_en; // @[topModuleD.scala 32:19]
+  assign inner_io_game_end = main_io_game_end; // @[topModuleD.scala 33:20]
+  assign inner_io_round = main_io_round; // @[topModuleD.scala 34:17]
+  assign inner_io_button = io_button; // @[topModuleD.scala 30:19]
+  assign LED_D_io_score = inner_io_score; // @[topModuleD.scala 36:18]
 endmodule
